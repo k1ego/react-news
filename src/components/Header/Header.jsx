@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 const Header = () => {
   return (
     <header className={styles.header}>
-      <h1 className={styles.title}>NEWS REACTIFY</h1>
+      <h1 className={styles.title}>K1EGO NEWS</h1>
       <p className={styles.date}>{formatDate(new Date())}</p>
     </header>
   );

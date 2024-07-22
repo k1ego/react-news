@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getNews } from '../../api/apiNews';
 import NewsBanner from '../../components/NewsBanner/NewsBanner';
+import NewsList from '../../components/NewsList/NewsList';
 import styles from './styles.module.css';
 
 const Main = () => {
@@ -17,11 +18,12 @@ const Main = () => {
 		fetchNews();
 	}, []);
 
+
 	return (
 		<main className={styles.main}>
 			{news.length > 0 ? <NewsBanner item={news[0]} /> : null}
-
-
+    
+      <NewsList news={news} />
 		</main>
 	);
 };
