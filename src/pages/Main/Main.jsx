@@ -23,7 +23,7 @@ const Main = () => {
 			const response = await getNews({
         page_number: currentPage,
         page_size: pageSize,
-        category: selectedCategory === "All" ? null : selectedCategory,
+        category: selectedCategory === "All" ? null : selectedCategory.toLowerCase(),
       });
 			setNews(response.news);
 			setIsLoading(false);
@@ -32,10 +32,14 @@ const Main = () => {
 		}
 	};
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   const fetchCategories = async () => {
 		try {
 			const response = await getCategories();
-			setCategories(["All", ...response.categories]);
+			setCategories(["All", ...response.categories.map(capitalizeFirstLetter)]);
 		} catch (error) {
 			console.log(error);
 		}
