@@ -1,16 +1,10 @@
-import { getCategories } from "../../api/apiNews";
-import { TOTAL_PAGES } from "../../constants/constants";
-import { useFetch } from "../../helpers/hooks/useFetch";
-import Categories from "../Categories/Categories";
-import NewsListWithSkeleton from "../NewsList/NewsList";
-import Pagination from "../Pagination/Pagination";
-import Search from "../Search/Search";
-import styles from "./styles.module.css";
+import { TOTAL_PAGES } from '../../constants/constants';
+import NewsFilters from '../NewsFilters/NewsFilters';
+import NewsListWithSkeleton from '../NewsList/NewsList';
+import Pagination from '../Pagination/Pagination';
+import styles from './styles.module.css';
 
-const NewsByFilters = ({filters, changeFilter, isLoading, news}) => {
-  const { data: dataCategories } = useFetch(getCategories);
-
-
+const NewsByFilters = ({ filters, changeFilter, isLoading, news }) => {
 	const handleNextPage = () => {
 		if (filters.page_number < TOTAL_PAGES) {
 			changeFilter('page_number', filters.page_number + 1);
@@ -26,19 +20,17 @@ const NewsByFilters = ({filters, changeFilter, isLoading, news}) => {
 			changeFilter('page_number', filters.page_number - 1);
 		}
 	};
-  return (
-    <section className={styles.section}>
-      {dataCategories ? (
-				<Categories
-					categories={dataCategories.categories}
-					selectedCategory={filters.category}
-					setSelectedCategory={category => changeFilter('category', category)}
-				/>
-			) : null}
+	return (
+		<section className={styles.section}>
 
-			<Search
-				keywords={filters.keywords}
-				setKeywords={keywords => changeFilter('keywords', keywords)}
+		<NewsFilters changeFilter={changeFilter} filters={filters}/>
+
+		<Pagination
+				totalPages={TOTAL_PAGES}
+				handleNextPage={handleNextPage}
+				handlePreviosPage={handlePreviosPage}
+				handlePageClick={handlePageClick}
+				currentPage={filters.page_number}
 			/>
 
 			<NewsListWithSkeleton isLoading={isLoading} news={news} />
@@ -50,8 +42,8 @@ const NewsByFilters = ({filters, changeFilter, isLoading, news}) => {
 				handlePageClick={handlePageClick}
 				currentPage={filters.page_number}
 			/>
-    </section>
-  );
+		</section>
+	);
 };
 
 export default NewsByFilters;
