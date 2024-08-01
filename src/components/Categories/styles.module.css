@@ -9,18 +9,19 @@
   scrollbar-width: none;
 }
 
-.item, .active {
+.item,
+.active {
   display: flex;
   align-items: center;
   padding: 8px 16px;
   border: none;
   border-radius: 32px;
-  background-color: #F2F4F5;
+  background-color: #f2f4f5;
 }
 
 .active {
-  background-color: #E7E7FF;
-  color: #6B4EFF;
+  background-color: #e7e7ff;
+  color: #6b4eff;
 }
 
 ::-webkit-scrollbar {
