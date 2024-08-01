@@ -11,6 +11,7 @@
   border: none;
   background-color: white;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .pageNumber:disabled,
