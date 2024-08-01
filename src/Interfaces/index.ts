@@ -40,10 +40,8 @@ export interface IFilters {
   keywords: string;
 }
 
-// утилитарный тип Partial - делает все поля опциональными 
 export type ParamsType = Partial<IFilters>;
 
-// литеральные типы
 export type CategoriesType =
   | "regional"
   | "technology"

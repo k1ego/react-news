@@ -1,9 +1,9 @@
 import { formatTimeAgo } from "../../helpers/formatTimeAgo";
-import { INews } from "../../Interfaces";
+import { INews } from "../../interfaces";
 import styles from "./styles.module.css";
 
 interface Props {
-  item: INews; 
+  item: INews;
 }
 
 const NewsItem = ({ item }: Props) => {
