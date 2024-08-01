@@ -1,36 +1,32 @@
-import React, { useRef } from 'react';
-import styles from './styles.module.css';
+import React, { useRef } from "react";
+import styles from "./styles.module.css";
 
 interface Props {
-	children: React.ReactElement;
-	step?: number;
+  children: React.ReactElement;
+  step?: number;
+  isDark: boolean;
 }
 
-const Slider = ({ children, step = 150 }: Props) => {
-	const sliderRef = useRef<HTMLElement | null>(null);
+const Slider = ({ children, step = 150, isDark }: Props) => {
+  const sliderRef = useRef<HTMLElement | null>(null);
 
-	const scrollLeft = () => {
-		if (!sliderRef.current) return;
-		sliderRef.current.scrollLeft -= step;
-	};
+  const scrollLeft = () => {
+    if (!sliderRef.current) return;
+    sliderRef.current.scrollLeft -= step;
+  };
 
-	const scrollRight = () => {
-		if (!sliderRef.current) return;
-		sliderRef.current.scrollLeft += step;
-	};
+  const scrollRight = () => {
+    if (!sliderRef.current) return;
+    sliderRef.current.scrollLeft += step;
+  };
 
-	return (
-		<div className={styles.slider}>
-			<button onClick={scrollLeft} className={styles.arrow}>
-				{`<`}
-			</button>
-			{/*Клонирует элемент React и позволяет изменять его пропсы. Полезно, когда нужно добавить или изменить пропсы существующего элемента, особенно при работе с дочерними элементами */}
-			{React.cloneElement(children, { ref: sliderRef })}
-			<button onClick={scrollRight} className={styles.arrow}>
-				{`>`}
-			</button>
-		</div>
-	);
+  return (
+    <div className={`${styles.slider} ${isDark ? styles.dark : styles.light}`}>
+      <button onClick={scrollLeft} className={styles.arrow}>{`<`}</button>
+      {React.cloneElement(children, { ref: sliderRef })}
+      <button onClick={scrollRight} className={styles.arrow}>{`>`}</button>
+    </div>
+  );
 };
 
 export default Slider;

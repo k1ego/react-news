@@ -5,10 +5,17 @@
   gap: 12px;
 }
 
+.light {
+  background-color: white;
+}
+
+.dark {
+  background-color: #23272f;
+}
+
 .input {
   width: 100%;
   padding: 10px;
   border: 1px solid #f2f3f5;
   border-radius: 12px;
 }
-
