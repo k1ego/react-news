@@ -7,10 +7,12 @@ import { INews } from "..";
 interface State {
   news: INews[];
   filters: IFilters;
+  currentNews: INews | null;
 }
 
 const initialState: State = {
   news: [],
+  currentNews: null,
   filters: {
     page_number: 1,
     page_size: PAGE_SIZE,
@@ -33,9 +35,12 @@ export const newsSlice = createSlice({
       const { key, value } = action.payload;
       state.filters = { ...state.filters, [key]: value };
     },
+    setCurrentNews: (state, action: PayloadAction<INews | null>) => {
+      state.currentNews = action.payload;
+    },
   },
 });
 
-export const { setNews, setFilters } = newsSlice.actions;
+export const { setNews, setFilters, setCurrentNews } = newsSlice.actions;
 
 export default newsSlice.reducer;
